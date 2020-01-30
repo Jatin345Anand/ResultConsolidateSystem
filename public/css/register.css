@@ -1,0 +1,21 @@
+body{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    /* background-color: antiquewhite; */
+    /* color: brown; */
+    text-align: center;
+}
+#consolidated{
+    
+    text-align: 23%;
+} 
+.selectname{
+    padding-left: 400px;
+    padding-right: 400px;
+  
+}
+#selecttype{
+    padding-left: 450px;
+    padding-right: 400px;
+}

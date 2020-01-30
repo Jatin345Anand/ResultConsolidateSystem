@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="../../node_modules/materialize-css/dist/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="../../node_modules/materialize-css/dist/js/materialize.min.js"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./assets/images/RegTech Icon - Data Orchestration.png">
+    <!-- <link rel="stylesheet" href=""> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="../css/Result.css">
+    <script src=" ../js/custom.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script>
+          
+        </script>
+</head>
+
+<body>
+    <!-- <h1>Welcome to EJS<%= DOCS%></h1> -->
+    <div class="Studentdetails_Container">
+            <h3>STUDENT DETAILS</h3>
+            <table>
+    
+                <thead>
+                    <tr>
+                        <th>STUDENT ATTRIBUTE</th>
+                        <th>STUDENT VALUE</th>
+                        <th>STUDENT ATTRIBUTE</th>
+                        <th>STUDENT VALUE</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+    
+                    <tr id="batch">
+                        <td>Batch</td>
+                        <td>
+                            <%= DOCS.batch %>
+                        </td>
+    
+                        <td>Enrollment Number</td>
+                        <td>
+                            <%= DOCS.enrollmentnumber %>
+                        </td>
+    
+                    </tr>
+                    <tr id="name">
+                        <td>Name</td>
+                        <td>
+                            <%= DOCS.name %>
+                        </td>
+    
+                        <td>SID</td>
+                        <td>
+                            <%= DOCS.sid %>
+                        </td>
+                    </tr>
+    
+                   
+                    <tr id="sidd">
+                        <td>Schema Id</td>
+                        <td>
+                            <%= DOCS.schemaid %>
+                        </td>
+                        <td>Institute Roll Number</td>
+                        <td>
+                            <%= DOCS.instituterollnubmer %>
+                        </td>
+                    </tr>
+    
+    
+                    <tr id="pname">
+                        <td>Programme Name</td>
+                        <td>
+                            <%= DOCS.programmename %>
+                        </td>
+    
+                        <td>Programme Code</td>
+                        <td>
+                            <%= DOCS.programmecode %>
+                        </td>
+                    </tr>
+    
+                    <tr id="iname">
+                        <td>Institute Name</td>
+                        <td>
+                            <%= DOCS.institutename %>
+                        </td>
+    
+                        <td>Institution Code</td>
+                        <td>
+                            <%= DOCS.institutecode %>
+                        </td>
+                    </tr>
+    
+                    <tr id="uname">
+                        <td>University Name</td>
+                        <td>GURU GOBIND SINGH INDRAPRASTHA UNIVERSITY</td>
+                    </tr>
+    
+                </tbody>
+            </table>
+        </div> 
+    <% var ALLPercentages =[]%>
+    <% var ALLSEMNames =[]%>
+    <% var ALLSEMTotalSubject=[] %>
+    <% var SumofAllCreditofSems=0,SumofGradeandCredit=0;%>
+    <% for(var k in SEMDATA){%>
+    <div class="semcontainer" id="semcont">
+        <h3>SEMESTER -
+            <%=k%>
+        </h3>
+        <div class="StudentExternaltdetails_Container">
+
+            <h5>STUDENT EXTERNAL THEORY ASSESSMENT</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>SUBJECT ID</th>
+                        <th>SUBJECT CODE</th>
+                        <th>SUBJECT NAME</th>
+                        <th>OBTAINED MARKS</th>
+                        <th>MAXIMUM MARKS</th>
+                    </tr>
+                </thead>
+                <%sname='',c11=1;%>
+                <% for(var k1 in SEMDATA[k].a2){%>
+                <tbody>
+                    <% if(Object.keys(SEMDATA[k].a2[k1]).length!=0) {%>
+                    <tr>
+                        <td>
+                            <%= c11++%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a2[k1].subjectid%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a2[k1].subjectcode%>
+                        </td>
+                        <td>
+                                <% if((SEMDATA[k].a2[k1].subjectname).match('REAPPEAR')==null || (SEMDATA[k].a2[k1].subjectname).match('REVISED')==null || (SEMDATA[k].a2[k1].subjectname).match('RECHECKING')==null){%>
+                                    <%  sname=SEMDATA[k].a2[k1].subjectname;%>
+                                   
+                                    <%}%>
+                                    <% if((SEMDATA[k].a2[k1].subjectname).match('REAPPEAR')!=null || (SEMDATA[k].a2[k1].subjectname).match('REVISED')!=null || (SEMDATA[k].a2[k1].subjectname).match('RECHECKING')!=null){%>
+                            <% if((SEMDATA[k].a2[k1].subjectname).match('REAPPEAR')!=null){%>
+                                <% sname=SEMDATA[k].a2[k1].subjectname.substring(0,(SEMDATA[k].a2[k1].subjectname).match('REAPPEAR').index-1)%>
+                                <%}%>
+                                <% if( (SEMDATA[k].a2[k1].subjectname).match('REVISED')!=null){%>
+                                    <% sname=SEMDATA[k].a2[k1].subjectname.substring(0,(SEMDATA[k].a2[k1].subjectname).match('REVISED').index-1)%>
+                                    <%}%>
+                                    <% if((SEMDATA[k].a2[k1].subjectname).match('RECHECKING')!=null){%>
+                                        <% sname=SEMDATA[k].a2[k1].subjectname.substring(0,(SEMDATA[k].a2[k1].subjectname).match('RECHECKING').index-1)%>
+                                        <%}%>
+                                        <%}%>
+                                        <%= sname%>
+                            
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a2[k1].subjectexternalm%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a2[k1].subjectwholem%>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+                <%}%>
+            </table>
+        </div>
+
+        <div class="StudentInternaldetails_Container">
+            <h5>STUDENT INTERNAL THEORY ASSESSMENT</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>SUBJECT ID</th>
+                        <th>SUBJECT CODE</th>
+                        <th>SUBJECT NAME</th>
+                        <th>ASSIGNMENT/CLASS TEST MARKS(5)</th>
+                        <th>ATTENDANCE MARKS(5)</th>
+                        <th>INTERNAL THEORY MARKS(15)</th>
+
+                        <th>OBTAINED MARKS</th>
+                        <th>MAXIMUM MARKS</th>
+                    </tr>
+                </thead>
+                <% sname='',c12=1;%>
+                <% for(var k1 in SEMDATA[k].a4){%>
+                <tbody>
+                    <% if(Object.keys(SEMDATA[k].a4[k1]).length!=0) {%>
+                    <tr>
+                        <td>
+                            <%= c12++%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectid%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectcode%>
+                        </td>
+                        <td>
+                                <% if((SEMDATA[k].a4[k1].subjectname).match('REAPPEAR')==null || (SEMDATA[k].a4[k1].subjectname).match('REVISED')==null || (SEMDATA[k].a4[k1].subjectname).match('RECHECKING')==null){%>
+                                    <%  sname=SEMDATA[k].a4[k1].subjectname;%>
+                                   
+                                    <%}%>
+                                    <% if((SEMDATA[k].a4[k1].subjectname).match('REAPPEAR')!=null || (SEMDATA[k].a4[k1].subjectname).match('REVISED')!=null || (SEMDATA[k].a4[k1].subjectname).match('RECHECKING')!=null){%>
+                            <% if((SEMDATA[k].a4[k1].subjectname).match('REAPPEAR')!=null){%>
+                                <% sname=SEMDATA[k].a4[k1].subjectname.substring(0,(SEMDATA[k].a4[k1].subjectname).match('REAPPEAR').index-1)%>
+                                <%}%>
+                                <% if( (SEMDATA[k].a4[k1].subjectname).match('REVISED')!=null){%>
+                                    <% sname=SEMDATA[k].a4[k1].subjectname.substring(0,(SEMDATA[k].a4[k1].subjectname).match('REVISED').index-1)%>
+                                    <%}%>
+                                    <% if((SEMDATA[k].a4[k1].subjectname).match('RECHECKING')!=null){%>
+                                        <% sname=SEMDATA[k].a4[k1].subjectname.substring(0,(SEMDATA[k].a4[k1].subjectname).match('RECHECKING').index-1)%>
+                                        <%}%>
+                                        <%}%>
+                                        <%= sname%>
+                                       
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectinternalm1%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectinternalm2%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectinternalm3%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectinternalm%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a4[k1].subjectwholem%>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+                <%}%>
+
+            </table>
+        </div>
+        <div class="StudentExternaltdetails_Container">
+            <h5>STUDENT INTERNAL PRACTICAL ASSESSMENT</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>SUBJECT ID</th>
+                        <th>SUBJECT CODE</th>
+                        <th>SUBJECT NAME</th>
+                        <th>FILE MARKS(10)</th>
+                        <th>ATTENDANCE MARKS(10)</th>
+                        <th>INTERNAL PRACTICAL VIVA MARKS(20)</th>
+
+                        <th>OBTAINED MARKS</th>
+                        <th>MAXIMUM MARKS</th>
+                    </tr>
+                </thead>
+                <%c13=1;%>
+                <% for(var k1 in SEMDATA[k].a5){%>
+                <tbody>
+                    <% if(Object.keys(SEMDATA[k].a5[k1]).length!=0) {%>
+                    <tr>
+                        <td>
+                            <%= c13++%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectid%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectcode%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectname%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectinternalm1%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectinternalm2%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectinternalm3%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectinternalm%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a5[k1].subjectwholem%>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+                <%}%>
+
+            </table>
+        </div>
+        <div class="StudentExternaltdetails_Container">
+            <h5>STUDENT EXTERNAL PRACTICAL ASSESSMENT</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>SUBJECT ID</th>
+                        <th>SUBJECT CODE</th>
+                        <th>SUBJECT NAME</th>
+                        <th>OBTAINED MARKS</th>
+                        <th>MAXIMUM MARKS</th>
+                    </tr>
+                </thead>
+                <%c14=1;%>
+                <% for(var k1 in SEMDATA[k].a3){%>
+                <tbody>
+                    <% if(Object.keys(SEMDATA[k].a3[k1]).length!=0) {%>
+                    <tr>
+                        <td>
+                            <%= c14++%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a3[k1].subjectid%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a3[k1].subjectcode%>
+                        </td>
+                        <td>
+                            <%= SEMDATA[k].a3[k1].subjectname%>
+                        </td>
+
+
+                        <td>
+                            <%= SEMDATA[k].a3[k1].subjectexternalm%>
+                        </td>
+
+                        <td>
+                            <%= SEMDATA[k].a3[k1].subjectwholem%>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+                <%}%>
+
+            </table>
+        </div>
+        <div class="StudentExternaltdetails_Container">
+                <h5>STUDENT EXTERNAL THEORY AND PRACTICAL ASSESSMENT</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>SUBJECT ID</th>
+                            <th>SUBJECT CODE</th>
+                            <th>SUBJECT NAME</th>
+                            <th>SUBJECT TYPE</th>
+    
+                            <th>SUBJECT KIND</th>
+                            <th>SUBJECT CREDIT</th>
+                            <th>INTERNAL MARKS</th>
+                            <th>EXTERNAL MARKS</th>
+                            <th>OBTAINED MARKS</th>
+                            <th>MAXIMUM MARKS</th>
+                        </tr>
+                    </thead>
+                    <% var sumWMR =0,sumCreditR=0,sne=1;%>
+                    <% for(var k1 in SEMDATA[k].a6){%>
+    
+                    <tbody>
+                        <% if(SEMDATA[k].a6[k1].sn==1){%>
+    
+                        <tr id="dotoggle">
+                            <td>
+                                <%= sne++%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectid%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectcode%>
+                            </td>
+    
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectname%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjecttype%>
+                            </td>
+    
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectkind%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].credit%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectinternalM%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectexternalM%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectexternalm%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectwholem%>
+                            </td>
+    
+                        </tr>
+                        <%}%>
+                          
+                        <% if(SEMDATA[k].a6[k1].sn>1){%>
+    
+                        <tr class="abovesubjdata">
+                            <td>
+                                <%= sne++%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectid%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectcode%>
+                            </td>
+    
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectname%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjecttype%>
+                            </td>
+    
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectkind%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].credit%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectinternalM%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectexternalM%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectexternalm%>
+                            </td>
+                            <td>
+                                <%= SEMDATA[k].a6[k1].subjectwholem%>
+                            </td>
+    
+                        </tr>
+    
+                        <%}%>
+                            <% sumWMR = sumWMR+ parseInt(SEMDATA[k].a6[k1].subjectexternalm)%>
+                        <% sumCreditR = sumCreditR + parseInt(SEMDATA[k].a6[k1].credit)%>
+                        <%}%>
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+        <div class="StudentExternaltdetails_Container">
+            <!-- <h5>STUDENT EXTERNAL THEORY AND PRACTICAL ASSESSMENT</h5> -->
+            <table>
+                 
+                <% var sumWM =0,sumCredit=0;sumCP=0,grade=0;%>
+                <% for(var k1 in SEMDATA[k].a1){%>
+                    
+                    <tbody>
+                            <tr> 
+                                    <% if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)<40 && SEMDATA[k].a1[k1].subjectexternalm=='A'){%>
+                                             
+                                            <% grade = 0;%>
+                                            <%  }%>
+                                            <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=40 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=44 ){%>
+                                                 
+                                            <%grade =4;%>
+                        
+                                            <%}%>
+                                                    <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=45 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=49){%>
+                                                        
+                                            <%grade =5;%>
+                                            <% }%>
+                                            <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=50 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=54){%>
+                                                 
+                                            <%grade =6;%>
+                                            <%}%>
+                                                            <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=55 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=64){%>
+                                                                
+                                            <%grade =7;%>
+                                            <% }%>
+                                            <% if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=65 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=74){%>
+                                                 
+                                            <% grade =8;%>
+                                            <%}%>
+                                                                    <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=75 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=89){%>
+                                                                         
+                                            <%grade =9;%>
+                                            <%}%>
+                                                                        <%if(parseInt(SEMDATA[k].a1[k1].subjectexternalm)>=90 && parseInt(SEMDATA[k].a1[k1].subjectexternalm)<=100){%>
+                                                                             
+                                            <%grade =10;%>
+                                            <%}%>
+                                
+                                
+                            </tr> 
+                        </tbody>
+                    
+                    <% sumWM = sumWM+ parseInt(SEMDATA[k].a1[k1].subjectexternalm)%>
+                    <% sumCredit = sumCredit + parseInt(SEMDATA[k].a1[k1].credit)%>
+                    <%  sumCP = sumCP + (parseInt(SEMDATA[k].a1[k1].credit)*grade)%>
+                    <%}%>
+
+                </tbody>
+            </table>
+        </div>
+        
+    
+        
+      <h5 id="GenPErcen">STUDENT PERCENTAGE OF SEMESTER = <%=Math.abs(sumWM/parseInt(SEMDATA[k].a1[k1].sn)).toString().substring(0,5)%> %</h5>
+                       
+                                      <% ALLPercentages.push(Math.abs(sumWM/parseInt(SEMDATA[k].a1[k1].sn)).toString().substring(0,5))%>
+                    <% ALLSEMTotalSubject.push(SEMDATA[k].a1[k1].sn)%>
+                    <% ALLSEMNames.push(k)%>
+                    <h5>STUDENT OBTAINED TOTAL CREDIT OF SEMESTER = <%=(sumCredit)%></h5>
+                    <h5>STUDENT SEMESTER SGPA (SEMESTER GRADE POINT AVERAGE) =
+                            <%=(Math.abs(sumCP/parseInt(sumCredit)).toString().substring(0,5))%></h5>
+                    <%SumofAllCreditofSems = SumofAllCreditofSems + sumCredit%>
+                    <%SumofGradeandCredit = SumofGradeandCredit + sumCP%>
+                    <h5>STUDENT SEMESTER CGPA (CUMULATIVE GRADE POINT AVERAGE) =
+                            <%=Math.abs(SumofGradeandCredit/SumofAllCreditofSems).toString().substring(0,5)%></h5>
+                    
+        </div>
+        <% }%>
+         <h5 id="ArrayPercen"> <%=ALLPercentages%></h5>
+         <h5 id="ArraySemTotalNumberSubject"> <%=ALLSEMTotalSubject%></h5>
+         <h5 id="ArraySem"> <%=ALLSEMNames%></h5>
+          
+         
+        <br><br>
+       
+        <% if(SEMBACK.length>0){%>
+        <% var c1=1; %>
+        <% var c2=1; %> 
+        <div class="StudentExternaltdetails_Container">
+
+                <h4 id="backlogmess1"> STUDENT BACKLOG SUBJECTS ASSESSMENT WITH DATEWISE</h4>
+                <table>
+                    <thead>
+                        <tr>
+                                <th> <h5>S.N</h5></th>
+                                <th><h5> SUBJECT NAME</h5></th>
+                                <th><h5> SUBJECT CODE</h5></th>
+                                 
+                                <th><h5>SUBJECT KIND</h5></th>
+                                <th><h5>SUBJECT ASSESSMENT WITH DATES</h5></th>
+                             
+                        </tr>
+                    </thead>
+                    <% for(var k1 in SEMBACK){%>
+                    <tbody class="backlogview">
+                       
+                        <tr>
+                            <td>
+                                <h5> <%= c1++%>. </h5>
+                            </td>
+                            <td>
+                                    <h5><%=   SEMBACK[k1].subjectname%></h5>
+                                </td>
+                                <td>
+                                       <h5> <%=  SEMBACK[k1].subjectcode%></h5>
+                                    </td>
+                            <td>
+                              <h5>  <%=  SEMBACK[k1].subjectkind%></h5>
+                            </td>
+                            <% for(var k2 in SEMBACK[k1].datawithdate){%>
+                                <%if(parseInt(SEMBACK[k1].datawithdate[k2].total)==40){%>
+                                    <td id="backlogat40">
+                                        <h6 class="dateattributes">EXAMINATION</h6> - <%= SEMBACK[k1].datawithdate[k2].examtype%>
+                                        **
+                                        <h6>DATE</h6> -
+                                        <%= (SEMBACK[k1].datawithdate[k2].data).substring(0,4)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(4,6)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(6,8)%>
+                                        **
+                                        <h6>OBTAINED CREDIT</h6> - <%= SEMBACK[k1].datawithdate[k2].credit%>
+                                        **
+                                        <h6>INTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].internal%>
+            
+                                        **
+                                        <h6>EXTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].external%>
+            
+                                        **
+                                        <h6> TOTAL</h6> - <%= SEMBACK[k1].datawithdate[k2].total%>
+            
+                                    </td>
+                                    <%}%>
+                                    <%if(parseInt(SEMBACK[k1].datawithdate[k2].total)>40){%>
+                                        <td id="backlogabove40">
+                                            <h6 class="dateattributes">EXAMINATION</h6> - <%= SEMBACK[k1].datawithdate[k2].examtype%>
+                                            **
+                                            <h6>DATE</h6> -
+                                            <%= (SEMBACK[k1].datawithdate[k2].data).substring(0,4)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(4,6)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(6,8)%>
+                                            **
+                                            <h6>OBTAINED CREDIT</h6> - <%= SEMBACK[k1].datawithdate[k2].credit%>
+                                            **
+                                            <h6>INTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].internal%>
+                
+                                            **
+                                            <h6>EXTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].external%>
+                
+                                            **
+                                            <h6> TOTAL</h6> - <%= SEMBACK[k1].datawithdate[k2].total%>
+                
+                                        </td>
+                                        <%}%>
+                                        <% if(parseInt(SEMBACK[k1].datawithdate[k2].total)<40) {%>
+                                <td id="backlogbelow40">
+                                    <h6 class="dateattributes">EXAMINATION</h6> - <%= SEMBACK[k1].datawithdate[k2].examtype%>
+                                    **
+                                    <h6>DATE</h6> -
+                                    <%= (SEMBACK[k1].datawithdate[k2].data).substring(0,4)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(4,6)+'/'+(SEMBACK[k1].datawithdate[k2].data).substring(6,8)%>
+                                    **
+                                    <h6>OBTAINED CREDIT</h6> - <%= SEMBACK[k1].datawithdate[k2].credit%>
+                                    **
+                                    <h6>INTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].internal%>
+        
+                                    **
+                                    <h6>EXTERNAL</h6> - <%= SEMBACK[k1].datawithdate[k2].external%>
+        
+                                    **
+                                    <h6> TOTAL</h6> - <%= SEMBACK[k1].datawithdate[k2].total%>
+        
+                                </td>
+                                <%}%>
+                              
+                            <%}%>
+                        </tr>
+                         
+                    </tbody>
+                    <%}%>
+                   
+                </table>
+                <br>
+              
+            </div>
+            <%}%>
+            <br>
+            <h5>TOTAL BACKLOGS :- <%=BACKLOGS%></h5>
+            <br>
+        <a class="waves-effect waves-light btn" id="pdfd">DOWNLOAD AS PDF</a>
+        <br><br>
+       
+        <button  id="showchart" class="waves-effect waves-light btn">Show Chart</button>
+         
+        <div class="container">
+            <canvas id="myChart"  ></canvas>
+    
+ <br>
+ <h5 id="aggregatepersen">STUDENT AGGREGATE % = <span id="apercen"></span></h5>
+ <br>   
+            <!-- <div class="container">
+                <canvas id="mypieChart" ></canvas>
+    
+            </div>
+            <div class="container">
+                <canvas id="mydoughnutChart" ></canvas>
+    
+            </div>
+            <div class="container">
+                <canvas id="myradarChart" ></canvas>
+    
+            </div>
+            <div class="container">
+                <canvas id="mypolarChart" ></canvas>
+    
+            </div>
+            <div class="container">
+                <canvas id="myHoriChart" ></canvas>
+    
+            </div> -->
+        </div>
+</body>
+
+</html>

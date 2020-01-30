@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>STUDENT RESULT CONSOLIDATE SYSTEM</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/register.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <!-- <link rel="shortcut icon" type="image/jpeg" href="./assets/images/login.jpeg"  > -->
+  <link rel="shortcut icon" type="image/png" href="./assets/images/RegTech Icon - Data Orchestration.png">
+  <!-- <i rel="shortcut icon" class="fas fa-poll"></i> -->
+  <!-- <img src="" alt="" srcset=""> -->
+  <!-- <link rel="icon" href="demo_icon.gif" type="./assets/imag" sizes="16x16"> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+  <!-- <h3>WELCOME TO BPIT STUDENT RESULT CONSOLIDATE SYSTEM</h3> -->
+  <h3>WELCOME TO BPIT STUDENT EVALUATION SYSTEM</h3>
+  <h4>SORRY!! YOU ARE NOT REGISTERED ALREADY. DO REGISTER</h4>
+  <h5 id="consolidated">REGISTER | STUDENT | TEACHER</h5>
+  <form action="registerTS" method="POST">
+      <div  class="row enroll selectname">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix"> </i>
+                <label for="autocomplete-input">USER ID</label>
+                <input type="text" name="uid" id="autocomplete-input" class="autocomplete">
+    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  class="row enroll selectname">
+            <div class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix"> </i>
+                  <label for="autocomplete-input">USER NAME</label>
+                  <input type="text" name="uname" id="autocomplete-input" class="autocomplete">
+      
+                </div>
+              </div>
+            </div>
+          </div>
+          <div  class="row enroll selectname">
+                <div class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix"> </i>
+                      <label for="autocomplete-input">USER PASSWORD</label>
+                      <input type="password" name="upass" id="autocomplete-input" class="autocomplete">
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div id="selecttype">
+                <select  name="seltype" class="browser-default">
+                  <option value="0" disabled selected name='selectmonth'>SELECT USER TYPE</option>
+                  <option value="1" name='student'>STUDENT</option>
+                  <option value="2" name='teacher'>TEACHER</option>
+                   
+                </select>
+              </div> 
+              
+    <br><br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">REGISTER
+
+    </button>
+    &nbsp; &nbsp;
+    <!-- <input class="btn waves-effect waves-light" name="serchtop10" type="submit" value="GET TOP 10 PLAYER" /> -->
+
+  </form>
+  <!-- <hr> -->
+  <!-- <form action="/gettop10" method="POST">
+    <input class="btn waves-effect waves-light" name="serchtop10" type="submit" value="GET TOP 10"/>
+ 
+</form> -->
+</body>
+
+</html>

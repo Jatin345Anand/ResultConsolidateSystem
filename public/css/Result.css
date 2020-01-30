@@ -1,0 +1,78 @@
+body{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    background-color: yellow;
+}
+h4{
+    text-align: center;
+}
+.dateattributes{
+    font-weight: bold;
+    color: red;
+}
+.backlogview{
+    background-color: lavender;
+    border: solid black;
+}
+/* tbody{
+    background-color: bisque;
+    border: solid black;  
+} */
+/* thead{
+    background-color: yellow;
+    border: solid black;
+    color: dimgray;
+    text-decoration: darkviolet;
+} */
+#backlogmess1{
+    color: red;
+}
+#backlogmess2{
+    color: green;
+}
+#back{
+  color: red;
+   
+}
+.abovesubjdata{
+    color: blue;
+}
+#backclear{
+  color: green;
+}
+.backclose{
+    color: blue;
+}
+#crank{
+    color: blueviolet;
+}
+#name{
+    color: brown;
+}
+#batch{
+    color: darkmagenta;
+}
+#sidd{
+    color: cornflowerblue;
+}
+#pname{
+    color: darkblue;
+}
+#iname{
+    color: darkred;
+}
+#uname{
+    color: dodgerblue;
+}
+#backlogat40{
+    color: blue;
+}
+#backlogabove40{
+    color: green;
+}
+#backlogbelow40{
+    color: red;
+}
